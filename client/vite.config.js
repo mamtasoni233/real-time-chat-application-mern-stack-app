@@ -4,7 +4,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react()],
-  port: '5174',
+  server: {
+    port: 5174,
+  },
   resolve: {
     alias: {
       // eslint-disable-next-line no-undef

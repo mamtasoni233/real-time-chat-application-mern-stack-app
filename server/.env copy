@@ -1,0 +1,4 @@
+PORT=8033
+JWT_SECRET_KEY=jQGkdkAhVQtVoctPpsmMKIVWCotBPukRhczrfkduyi0=
+CLIENT_URL="http://localhost:5174"
+DATABASE_URL="mongodb+srv://admin:admin@cluster0.akrjwnn.mongodb.net/syncronus-chat-app?retryWrites=true&w=majority&appName=Cluster0" 

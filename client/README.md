@@ -52,3 +52,9 @@ alias: {
 
 -- npm i react-router-dom
 --- https://reactrouter.com/en/main
+--- npm i axios
+--- npx shadcn-ui@latest add toast
+--- npx shadcn-ui@latest add sonner
+--- npm i zustand
+--- npx shadcn-ui@latest add avatar
+---- npm install react-icons --save
