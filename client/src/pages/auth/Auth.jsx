@@ -4,7 +4,8 @@ import Victory from '../../assets/victory.svg'
 import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
+// import { toast } from 'sonner'
+import { toast } from 'react-toastify';
 import apiRequest from '@/lib/api-client'
 import { LOGIN_ROUTES, SIGNUP_ROUTES } from '@/utils/constants'
 import { useNavigate } from 'react-router-dom'
@@ -20,26 +21,26 @@ const Auth = () => {
 
     const validateSignup = () => {
         if (!email.length) {
-            toast.error("Email is Required!");
+            toast.error("Email is Required!", { theme: "colored", });
             return false;
         }
         if (!password.length) {
-            toast.error("Password is Required!");
+            toast.error("Password is Required!", { theme: "colored", });
             return false;
         }
         if (password !== confrimPassword) {
-            toast.error("Passwords and confrim password should be same!");
+            toast.error("Passwords and confrim password should be same!", { theme: "colored", });
             return false;
         }
         return true;
     }
     const validateLogin = () => {
         if (!email.length) {
-            toast.error("Email is Required!");
+            toast.error("Email is Required!", { theme: "colored", });
             return false;
         }
         if (!password.length) {
-            toast.error("Password is Required!");
+            toast.error("Password is Required!", { theme: "colored", });
             return false;
         }
         return true;
@@ -49,10 +50,10 @@ const Auth = () => {
         try {
             if (validateLogin()) {
                 const res = await apiRequest.post(LOGIN_ROUTES, { email, password }, { withCredentials: true });
-                console.log("res", res)
+                // console.log("res", res)
                 if (res.data.users.id) {
                     setUserInfo(res.data.users);
-                    toast.success(res.data.message);
+                    toast.success(res.data.message, { theme: "colored", });
                     if (res.data.users.profileSetup) {
                         navigate('/chat')
                     } else {
@@ -61,8 +62,8 @@ const Auth = () => {
                 }
             }
         } catch (error) {
-            console.log(error)
-            toast.error(error.response.data.message)
+            // console.log(error)
+            toast.error(error.response.data.message, { theme: "colored", })
 
         }
     }
@@ -71,16 +72,16 @@ const Auth = () => {
         try {
             if (validateSignup()) {
                 const res = await apiRequest.post(SIGNUP_ROUTES, { email, password }, { withCredentials: true });
-                // console.log("res", res.data)
+                console.log("res", res.data)
                 if (res.status === 201) {
-                    toast.success(res.data.message);
+                    toast.success(res.data.message, { theme: "colored", });
                     setUserInfo(res.data.users);
                     navigate('/profile')
                 }
             }
         } catch (error) {
             console.log(error)
-            toast.error(error.response.data.message)
+            toast.error(error.response.data.message, { theme: "colored", })
 
         }
 

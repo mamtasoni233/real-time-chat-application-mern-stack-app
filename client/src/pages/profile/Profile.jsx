@@ -5,7 +5,8 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { colors, getcolor } from "@/lib/utils";
 import { FaPlus, FaTrash } from 'react-icons/fa'
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
+// import { toast } from "sonner";
+import { toast } from 'react-toastify';
 import { UPDATE_PROFILE_ROUTE } from "@/utils/constants";
 import apiRequest from "@/lib/api-client";
 import userAppstore from "@/store";
@@ -28,11 +29,11 @@ const Profile = () => {
       }, [userInfo]) */
     const validateProfile = () => {
         if (!firstName.length) {
-            toast.error("First name is Required!");
+            toast.error("First name is Required!", { theme: "colored", });
             return false;
         }
         if (!lastName.length) {
-            toast.error("Last name is Required!");
+            toast.error("Last name is Required!", { theme: "colored", });
             return false;
         }
         return true;
@@ -45,12 +46,12 @@ const Profile = () => {
                 const res = await apiRequest.post(UPDATE_PROFILE_ROUTE, { firstName, lastName, color: selectedColor }, { withCredentials: true })
                 if (res.status === 200 && res.data) {
                     setUserInfo({ ...res.data });
-                    toast.success("Profile updated successfully");
+                    toast.success("Profile updated successfully", { theme: "colored", });
                     navigate("/chat");
                 }
             } catch (error) {
                 console.error(error);
-                toast.error(error.response.data.message)
+                toast.error(error.response.data.message, { theme: "colored", })
             }
         }
 

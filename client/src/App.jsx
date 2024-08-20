@@ -7,17 +7,18 @@ import userAppstore from './store'
 import { useEffect, useState } from 'react'
 import apiRequest from './lib/api-client'
 import { GET_USER_INFO } from './utils/constants'
+import { toast } from 'react-toastify'
 
 const PrivateRoute = ({ children }) => {
   const { userInfo } = userAppstore();
   const isAuthenticated = !!userInfo
-  return isAuthenticated ? children : <Navigate to="/auth" />
+  return isAuthenticated ? children : <Navigate to="/auth" />;
 }
 
 const AuthRoute = ({ children }) => {
   const { userInfo } = userAppstore();
   const isAuthenticated = !!userInfo
-  return isAuthenticated ? <Navigate to="/auth" /> : children
+  return isAuthenticated ? <Navigate to="/chat" /> : children;
 }
 
 const App = () => {
@@ -36,7 +37,7 @@ const App = () => {
       } catch (error) {
         console.log({ error });
         setUserInfo(undefined)
-        // toast.error(error.response.data.message)
+        toast.error(error.response.data.message, { theme: "colored", })
       } finally {
         setLodaing(false)
       }
